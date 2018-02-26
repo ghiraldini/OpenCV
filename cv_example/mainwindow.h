@@ -5,6 +5,8 @@
 #include "cannyfilter.h"
 #include "contour.h"
 #include "capture.h"
+#include "fstream"
+#include "iostream"
 
 namespace Ui {
 class MainWindow;
@@ -27,8 +29,8 @@ private:
     void readImage(std::string image);
 
     //    std::string filename = "C://Users/usjaghi41/Documents/Software/Builds/cv_example/release/Desert.jpg";
-    const std::string filename = "C://Users/usjaghi41/Documents/Software/Builds/cv_example/release/building.jpg";
-
+    const std::string filename = "C://Users/usjaghi41/Documents/GitHub/OpenCV/cv_example/release/building.jpg";
+    std::string getIPcam();
 };
 
 #endif // MAINWINDOW_H

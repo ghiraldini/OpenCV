@@ -44,6 +44,7 @@ LIBS += C:\Users\usjaghi41\Documents\OpenCV\opencv\build\bin\libopencv_videoio34
 LIBS += C:\Users\usjaghi41\Documents\OpenCV\opencv\build\bin\libopencv_videostab340.dll
 LIBS += C:\Users\usjaghi41\Documents\OpenCV\opencv\build\bin\opencv_ffmpeg340.dll
 
+LIBS += C:\Users\usjaghi41\Documents\OpenCV\opencv\build\bin\libopencv_objdetect340.dll
 
 # more correct variant, how set includepath and libs for mingw
 # add system variable: OPENCV_SDK_DIR=D:/opencv/build

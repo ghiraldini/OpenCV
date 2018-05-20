@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     vid = new Capture;
 //    vid->initVideo(-99, getIPcam());
-    vid->BackgroundSubtract(0,getIPcam());
+    vid->BackgroundSubtract(-1,getIPcam());
 
     /* Boxes and Circles around Contours */
 //    ct = new Contour;

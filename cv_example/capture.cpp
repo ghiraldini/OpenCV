@@ -109,7 +109,7 @@ void Capture::BackgroundSubtract(int deviceID, const std::string ipcam){
                 if (i != channel)
                     spl[i] = cv::Mat::zeros(refS, spl[0].type());
             cv::merge(spl, res);
-            outputVideo << res;
+//            outputVideo << res;
 
 
 
@@ -121,9 +121,9 @@ void Capture::BackgroundSubtract(int deviceID, const std::string ipcam){
 
             cv::imshow(WIN_RF, frameReference); // view raw image
         } else {
-//            cv::imshow(WIN_RF, fgMaskMOG2); // view mask
-            detectAndDisplay( frameReference );
-            cv::imshow(WIN_RF, frameReference); // view raw image
+            cv::imshow(WIN_RF, fgMaskMOG2); // view mask
+//            detectAndDisplay( frameReference );
+//            cv::imshow(WIN_RF, frameReference); // view raw image
         }
     }
 

@@ -14,8 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
 //    readImage(filename);
 
     vid = new Capture;
-//    vid->initVideo(-99, getIPcam());
-    vid->BackgroundSubtract(0,getIPcam());
+    vid->initVideo(0, ""/*getIPcam()*/);
+//    vid->BackgroundSubtract(0,""/*getIPcam()*/);
 
     /* Boxes and Circles around Contours */
 //    ct = new Contour;
@@ -45,7 +45,7 @@ void MainWindow::readImage(std::string filename){
     // create image window named "My Image"
     cv::namedWindow("My Image");
 
-    cv::cvtColor(image, bw, CV_BGR2GRAY);
+    cv::cvtColor(image, bw, cv::COLOR_BayerBG2GRAY);
     std::cout << cv::countNonZero(bw) << std::endl;
 
     // show the image on window

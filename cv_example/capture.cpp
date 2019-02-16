@@ -5,14 +5,14 @@ Capture::Capture()
     cf = new CannyFilter;
 
     //-- 1. Load the cascades
-    if( !face_cascade.load( face_cascade_name ) ){
-        printf("--(!)Error loading face cascade\n");
-        exit(-1);
-    }
-    if( !eyes_cascade.load( eyes_cascade_name ) ){
-        printf("--(!)Error loading eyes cascade\n");
-        exit(-1);
-    }
+//    if( !face_cascade.load( face_cascade_name ) ){
+//        printf("--(!)Error loading face cascade\n");
+//        exit(-1);
+//    }
+//    if( !eyes_cascade.load( eyes_cascade_name ) ){
+//        printf("--(!)Error loading eyes cascade\n");
+//        exit(-1);
+//    }
 
 
 }
@@ -29,26 +29,28 @@ int Capture::initVideo(int deviceID, const std::string ipcam){
         return -1;
     }
 
-    cv::Size refS = cv::Size((int) captRefrnc.get(cv::CAP_PROP_FRAME_WIDTH),
-                             (int) captRefrnc.get(cv::CAP_PROP_FRAME_HEIGHT));
-    const char* WIN_RF = "Reference";
+//    cv::Size refS = cv::Size((int) captRefrnc.get(cv::CAP_PROP_FRAME_WIDTH),
+//                             (int) captRefrnc.get(cv::CAP_PROP_FRAME_HEIGHT));
+
+    const char* WIN_RF = "Dancin' with Susan";
 
     // Windows
-    cv::namedWindow(WIN_RF, cv::WINDOW_AUTOSIZE);
+    cv::namedWindow(WIN_RF, cv::WINDOW_NORMAL);
+    cv::setWindowProperty(WIN_RF, cv::WINDOW_FULLSCREEN, cv::WINDOW_FULLSCREEN);
     cv::moveWindow(WIN_RF, 400, 0);         //750,  2 (bernat =0)
 
-    std::cout << "Reference frame resolution: Width=" << refS.width << "  Height=" << refS.height
-              << " of nr#: " << captRefrnc.get(cv::CAP_PROP_FRAME_COUNT) << std::endl;
+//    std::cout << "Reference frame resolution: Width=" << refS.width << "  Height=" << refS.height
+//              << " of nr#: " << captRefrnc.get(cv::CAP_PROP_FRAME_COUNT) << std::endl;
 
     cv::Mat frameReference;
 
     while(cv::waitKey(33) != 27) //Show the image captured in the window and repeat
     {
         // Add trackerbar for canny filter
-        cv::createTrackbar( "Min Threshold:", WIN_RF, &lowThreshold, 100, change );
+//        cv::createTrackbar( "Min Threshold:", WIN_RF, &lowThreshold, 100, change );
 
         captRefrnc >> frameReference;
-        cv::imshow(WIN_RF, frameReference); // view raw image
+        cv::imshow(WIN_RF, frameReference); // view raw image        
         //        cv::imshow(WIN_RF,cf->useCannyFilter(frameReference,lowThreshold));
     }
 
@@ -60,8 +62,7 @@ int Capture::initVideo(int deviceID, const std::string ipcam){
 void Capture::BackgroundSubtract(int deviceID, const std::string ipcam){    
     cv::Mat frameReference, res;
     std::vector<cv::Mat> spl;
-    int i=0,
-            channel = 0;
+    int channel = 0;
     std::string sourceReference = ipcam;
 
     pMOG2 = cv::createBackgroundSubtractorMOG2(); //MOG2 approach

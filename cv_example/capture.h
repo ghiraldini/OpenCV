@@ -8,13 +8,18 @@
 #include <iomanip>  // for controlling float print precision
 #include <sstream>  // string to number conversion
 
+//#include "core.hpp"
+//#include "highgui.hpp"
+//#include "imgproc.hpp"
+//#include "videoio.hpp"
+//#include "objdetect.hpp"
+//#include "background_segm.hpp"
+
 #include <opencv2/core/core.hpp>        // Basic OpenCV structures (cv::Mat, Scalar)
 #include <opencv2/imgproc/imgproc.hpp>  // Gaussian Blur
 #include <opencv2/videoio/videoio.hpp>
 #include <opencv2/highgui/highgui.hpp>  // OpenCV window I/O
 #include "opencv2/objdetect/objdetect.hpp"
-
-
 #include <opencv2/video/background_segm.hpp>
 
 #include "cannyfilter.h"

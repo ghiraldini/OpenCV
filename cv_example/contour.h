@@ -2,8 +2,10 @@
 #define CONTOUR_H
 
 #include <QObject>
-#include "opencv2/highgui.hpp"
-#include "opencv2/imgproc.hpp"
+//#include "highgui.hpp"
+//#include "imgproc.hpp"
+#include "opencv2/highgui/highgui.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>

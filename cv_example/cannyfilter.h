@@ -4,6 +4,9 @@
 #include <QObject>
 #include "opencv2/imgproc.hpp"
 #include "opencv2/highgui.hpp"
+//#include "highgui.hpp"
+//#include "imgproc.hpp"
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <iostream>

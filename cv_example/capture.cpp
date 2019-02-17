@@ -2,23 +2,13 @@
 
 Capture::Capture()
 {
-    cf = new CannyFilter;
-
-    //-- 1. Load the cascades
-//    if( !face_cascade.load( face_cascade_name ) ){
-//        printf("--(!)Error loading face cascade\n");
-//        exit(-1);
-//    }
-//    if( !eyes_cascade.load( eyes_cascade_name ) ){
-//        printf("--(!)Error loading eyes cascade\n");
-//        exit(-1);
-//    }
-
 
 }
 
 int Capture::initVideo(int deviceID, const std::string ipcam){
     std::string sourceReference = ipcam;
+    // ID: 0 (internal cam)
+    // ID: 1 (USB cam)
     if( deviceID == 0 || deviceID == 1)
         captRefrnc.open(deviceID);
     else
@@ -29,29 +19,30 @@ int Capture::initVideo(int deviceID, const std::string ipcam){
         return -1;
     }
 
-//    cv::Size refS = cv::Size((int) captRefrnc.get(cv::CAP_PROP_FRAME_WIDTH),
-//                             (int) captRefrnc.get(cv::CAP_PROP_FRAME_HEIGHT));
+    cv::Size refS = cv::Size((int) captRefrnc.get(cv::CAP_PROP_FRAME_WIDTH),
+                             (int) captRefrnc.get(cv::CAP_PROP_FRAME_HEIGHT));
 
-    const char* WIN_RF = "Dancin' with Susan";
+    const char* WIN_RF = "Dancin' with SP";
 
     // Windows
     cv::namedWindow(WIN_RF, cv::WINDOW_NORMAL);
-    cv::setWindowProperty(WIN_RF, cv::WINDOW_FULLSCREEN, cv::WINDOW_FULLSCREEN);
-    cv::moveWindow(WIN_RF, 400, 0);         //750,  2 (bernat =0)
+    cv::setWindowProperty(WIN_RF, CV_WND_PROP_FULLSCREEN, CV_WINDOW_FULLSCREEN);
+    cv::setWindowProperty(WIN_RF, CV_WND_PROP_ASPECTRATIO, CV_WINDOW_KEEPRATIO);
+//    cv::moveWindow(WIN_RF, 0, 0);         //750,  2 (bernat =0)
+//    cv::displayStatusBar("Dancin' with Susan 2019!", WIN_RF, 0);
 
-//    std::cout << "Reference frame resolution: Width=" << refS.width << "  Height=" << refS.height
-//              << " of nr#: " << captRefrnc.get(cv::CAP_PROP_FRAME_COUNT) << std::endl;
+    std::cout << "Reference frame resolution: Width=" << refS.width << "  Height=" << refS.height
+              << " of nr#: " << captRefrnc.get(cv::CAP_PROP_FRAME_COUNT) << std::endl;
 
     cv::Mat frameReference;
 
+    const cv::String s = "Dancin' with Susan 2019!";
+    cv::addText(frameReference, s, cv::Point(0,0), cv::FONT_ITALIC);
+
     while(cv::waitKey(33) != 27) //Show the image captured in the window and repeat
     {
-        // Add trackerbar for canny filter
-//        cv::createTrackbar( "Min Threshold:", WIN_RF, &lowThreshold, 100, change );
-
         captRefrnc >> frameReference;
         cv::imshow(WIN_RF, frameReference); // view raw image        
-        //        cv::imshow(WIN_RF,cf->useCannyFilter(frameReference,lowThreshold));
     }
 
     exit(0);

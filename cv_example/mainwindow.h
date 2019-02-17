@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QWidget>
+#include <QPushButton>
+
 #include "cannyfilter.h"
 #include "contour.h"
 #include "capture.h"

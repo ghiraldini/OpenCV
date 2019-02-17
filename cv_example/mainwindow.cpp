@@ -11,23 +11,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-//    readImage(filename);
-
     vid = new Capture;
     vid->initVideo(0, ""/*getIPcam()*/);
-//    vid->BackgroundSubtract(0,""/*getIPcam()*/);
 
-    /* Boxes and Circles around Contours */
-//    ct = new Contour;
-//    ct->createContour(filename);
-
-
-    /* Canny Filter (ie Edge Detection) */
-//    cf = new CannyFilter;
-//    cf->useCannyFilter(filename);
-
-
-//    exit(0);
 }
 
 MainWindow::~MainWindow()
@@ -57,7 +43,9 @@ void MainWindow::readImage(std::string filename){
 }
 
 std::string MainWindow::getIPcam(){
-    std::string camFile = "C:/Users/usjaghi41/Documents/Personal/cam.txt";
+    return "";
+
+    std::string camFile = "";
     std::string camURL, line;
     std::ifstream in;
     in.open(camFile.c_str());

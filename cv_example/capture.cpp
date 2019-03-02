@@ -36,8 +36,8 @@ int Capture::initVideo(int deviceID, const std::string ipcam){
 
     cv::Mat frameReference;
 
-    const cv::String s = "Dancin' with Susan 2019!";
-    cv::addText(frameReference, s, cv::Point(0,0), cv::FONT_ITALIC);
+//    const cv::String s = "Dancin' with Susan 2019!";
+//    cv::addText(frameReference, s, cv::Point(0,0), cv::FONT_ITALIC);
 
     while(cv::waitKey(33) != 27) //Show the image captured in the window and repeat
     {

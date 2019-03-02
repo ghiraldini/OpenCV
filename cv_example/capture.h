@@ -58,3 +58,9 @@ private:
 };
 
 #endif // CAPTURE_H
+//Max Connections 10
+//TCP Port 37777
+//UDP Port 37778
+//HTTP Port 80
+//RTSP Port 554
+//HTTPS Port 443

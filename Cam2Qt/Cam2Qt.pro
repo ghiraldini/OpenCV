@@ -28,13 +28,15 @@ SOURCES += \
         mainwindow.cpp \
     capture.cpp \
     converter.cpp \
-    imageviewer.cpp
+    imageviewer.cpp \
+    thread.cpp
 
 HEADERS += \
         mainwindow.h \
     capture.h \
     converter.h \
-    imageviewer.h
+    imageviewer.h \
+    thread.h
 
 FORMS += \
         mainwindow.ui

@@ -8,6 +8,8 @@
 #include <QPainter>
 #include <QDebug>
 
+#include <iostream>
+
 #include <opencv2/core/core.hpp>        // Basic OpenCV structures (cv::Mat, Scalar)
 #include <opencv2/imgproc/imgproc.hpp>  // Gaussian Blur
 #include <opencv2/videoio/videoio.hpp>
@@ -21,35 +23,23 @@
  */
 
 class ImageViewer : public QWidget {
-   Q_OBJECT
-   Q_PROPERTY(QImage image READ image WRITE setImage USER true)
-   bool painted = true;
-   QImage m_img;
-//   AddressTracker m_track;
-   void paintEvent(QPaintEvent *) {
-      QPainter p(this);
-      if (!m_img.isNull()) {
-         setAttribute(Qt::WA_OpaquePaintEvent);
-         p.drawImage(0, 0, m_img);
-         painted = true;
-      }
-   }
+    Q_OBJECT
+    Q_PROPERTY(QImage image READ image WRITE setImage USER true)
+
+private:
+    bool painted = true;
+    QImage m_img;
+    int drops;
+    void paintEvent(QPaintEvent *);
+
 public:
-   ImageViewer(QWidget * parent = nullptr) : QWidget(parent) {}
-   ~ImageViewer() { /*qDebug() << __FUNCTION__ << "reallocations" << m_track.reallocs;*/ }
-   Q_SLOT void setImage(const QImage &img) {
-      if (!painted) qDebug() << "Viewer dropped frame!";
-      if (m_img.size() == img.size() && m_img.format() == img.format()
-          && m_img.bytesPerLine() == img.bytesPerLine())
-         std::copy_n(img.bits(), img.sizeInBytes(), m_img.bits());
-      else
-         m_img = img.copy();
-      painted = false;
-      if (m_img.size() != size()) setFixedSize(m_img.size());
-//      m_track.track(m_img);
-      update();
-   }
-   QImage image() const { return m_img; }
+    ImageViewer(QWidget * parent = nullptr) : QWidget(parent) {drops = 0;}
+    ~ImageViewer() {}
+    QImage image() const { return m_img; }
+
+public slots:
+    Q_SLOT void setImage(const QImage &img);
+
 };
 
 #endif // IMAGEVIEWER_H

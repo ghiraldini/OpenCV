@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QLayout>
+#include <QPushButton>
+#include <QLineEdit>
 
 #include "imageviewer.h"
 #include "converter.h"
@@ -26,10 +28,19 @@ public:
     ~MainWindow();
 
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow *ui;    
+    QGridLayout * initGUI();
+    std::string url_0;
+    QLineEdit *le_user;
+    QLineEdit *le_pw;
+    QLineEdit *le_ip;
+    QLineEdit *le_port;
 
 signals:
     void start(int cam);
+
+public slots:
+    void initVideoStream();
 };
 
 #endif // MAINWINDOW_H

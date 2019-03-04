@@ -30,9 +30,10 @@ private:
     QScopedPointer<cv::VideoCapture> m_videoCapture;
 
     void timerEvent(QTimerEvent *ev);
+    std::string ip_;
 
 public:
-    Capture(QObject *parent = {});
+    Capture(std::string, QObject *parent = {});
     ~Capture(){}
     cv::Mat frame() const;
 

@@ -1,7 +1,7 @@
 #include "capture.h"
 
-Capture::Capture(QObject */*parent*/) {
-
+Capture::Capture( std::string ip, QObject */*parent*/) {
+    ip_ = ip;
 }
 
 void Capture::start(int cam) {
@@ -9,7 +9,7 @@ void Capture::start(int cam) {
         if(cam)
             m_videoCapture.reset( new cv::VideoCapture(cam) );
         else
-            m_videoCapture.reset( new cv::VideoCapture("rtsp://admin:Hodrumet@10.0.0.234:554/cam/realmonitor?channel=1&subtype=1"/*cam*/) );
+            m_videoCapture.reset( new cv::VideoCapture(ip_) );
     }
 
     if (m_videoCapture->isOpened()) {

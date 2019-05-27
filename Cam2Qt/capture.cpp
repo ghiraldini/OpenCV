@@ -6,10 +6,10 @@ Capture::Capture( std::string ip, QObject */*parent*/) {
 
 void Capture::start(int cam) {
     if (!m_videoCapture){
-        if(cam)
+//        if(cam)
             m_videoCapture.reset( new cv::VideoCapture(cam) );
-        else
-            m_videoCapture.reset( new cv::VideoCapture(ip_) );
+//        else
+//            m_videoCapture.reset( new cv::VideoCapture(ip_) );
     }
 
     if (m_videoCapture->isOpened()) {

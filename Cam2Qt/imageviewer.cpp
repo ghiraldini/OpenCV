@@ -18,7 +18,7 @@ void ImageViewer::setImage(const QImage &img) {
 
     if (m_img.size() == img.size() && m_img.format() == img.format()
             && m_img.bytesPerLine() == img.bytesPerLine())
-        std::copy_n(img.bits(), img.sizeInBytes(), m_img.bits());
+        std::copy_n(img.bits(), img.byteCount(), m_img.bits());
     else
         m_img = img.copy();
 

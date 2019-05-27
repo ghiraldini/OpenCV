@@ -5,6 +5,7 @@
 #include <QLayout>
 #include <QPushButton>
 #include <QLineEdit>
+#include <QProcess>
 
 #include "imageviewer.h"
 #include "converter.h"
@@ -35,6 +36,8 @@ private:
     QLineEdit *le_pw;
     QLineEdit *le_ip;
     QLineEdit *le_port;
+
+    std::string getCamIP();
 
 signals:
     void start(int cam);

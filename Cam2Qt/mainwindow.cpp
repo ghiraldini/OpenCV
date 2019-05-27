@@ -31,7 +31,7 @@ QGridLayout* MainWindow::initGUI(){
     le_pw->setEchoMode(QLineEdit::Password);
     le_user->setText("<user_name>");
     le_pw->setText("<password>");
-    le_ip->setText("10.0.0.234");
+    le_ip->setText( QString::fromStdString(getCamIP()) );
     le_port->setText("554");
 
     connect(pb, SIGNAL(clicked(bool)), this, SLOT(initVideoStream()));
@@ -73,13 +73,53 @@ void MainWindow::initVideoStream(){
     capture->moveToThread(captureThread);
     converter->moveToThread(converterThread);
 
-    QObject::connect(capture, capture->frameReady, converter, converter->processFrame);
-    QObject::connect(converter, converter->imageReady, view, view->setImage);
+    QObject::connect(capture, &Capture::frameReady, converter, &Converter::processFrame);
+    QObject::connect(converter, &Converter::imageReady, view, &ImageViewer::setImage);
 
     view->show();
 
-    QObject::connect(capture, capture->started, [](){ qDebug() << "Capture started."; });
+    QObject::connect(capture, &Capture::started, [](){ qDebug() << "Capture started."; });
     QMetaObject::invokeMethod(capture, "start");
 
     return;
 }
+
+
+std::string MainWindow::getCamIP(){
+    QString ret = "";
+    QString keyword = "01-00-5e-00-00-02";
+    QString cmd = "arp -a";
+    std::string word = "";
+    std::string ip = "";
+    std::string mac = "";
+
+    QProcess *myProcess = new QProcess();
+    myProcess->start(cmd);
+    myProcess->waitForFinished();
+    QByteArray ba = myProcess->readAll();
+
+    std::cout << QString::fromLocal8Bit(ba).toStdString() << std::endl;
+    std::stringstream ss(QString::fromLocal8Bit(ba).toStdString());
+
+    int i = 0;
+    while(ss >> word){
+        std::cout << i << " " << word << std::endl;
+        if(i % 2 == 0) ip = word;
+        else mac = word;
+
+        if( word == keyword.toStdString() ){
+            std::cout << "Amcrest Camera found! " << mac << " : " << ip << std::endl;
+            ret = QString::fromStdString(ip);
+        }
+
+        i++;
+    }
+
+    return ret.toStdString();
+}
+
+
+
+
+
+

@@ -22,7 +22,7 @@ int Capture::initVideo(int deviceID, const std::string ipcam){
     cv::Size refS = cv::Size((int) captRefrnc.get(cv::CAP_PROP_FRAME_WIDTH),
                              (int) captRefrnc.get(cv::CAP_PROP_FRAME_HEIGHT));
 
-    const char* WIN_RF = "Dancin' with SP";
+    const char* WIN_RF = "Castlewood Cam";
 
     // Windows
     cv::namedWindow(WIN_RF, cv::WINDOW_NORMAL);

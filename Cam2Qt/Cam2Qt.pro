@@ -25,18 +25,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp \
-    capture.cpp \
-    converter.cpp \
-    imageviewer.cpp \
-    thread.cpp
+        mainwindow.cpp
 
 HEADERS += \
-        mainwindow.h \
-    capture.h \
-    converter.h \
-    imageviewer.h \
-    thread.h
+        mainwindow.h
 
 FORMS += \
         mainwindow.ui

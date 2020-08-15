@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     vid = new Capture;
     vid->initVideo(-90, getIPcam());
+//    vid->BackgroundSubtract(-90, getIPcam());
 
 }
 
@@ -43,7 +44,7 @@ void MainWindow::readImage(std::string filename){
 }
 
 std::string MainWindow::getIPcam(){
-    return "rtsp://admin:Hodrumet@10.0.0.234:554/cam/realmonitor?channel=1&subtype=1";
+    return "rtsp://admin:hodrumet999@192.168.1.116:554/cam/realmonitor?channel=1&subtype=1";
 
     std::string camFile = "";
     std::string camURL, line;
